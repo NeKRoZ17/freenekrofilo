@@ -74,8 +74,10 @@ async function saveToFirebase(name, message) {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
+        console.log('saveToFirebase response:', res.status, res.statusText);
         return res;
     } catch (e) {
+        console.error('Errore saveToFirebase:', e);
         return { ok: false };
     }
 }
@@ -128,7 +130,9 @@ async function loadAndUpdateUI() {
     if (firebaseSigs !== null) {
         updateUI(firebaseSigs);
     } else {
-        updateUI();
+        // Se Firebase non è raggiungibile, usa le firme locali salvate in localStorage
+        const localSigs = loadSignatures();
+        updateUI(localSigs);
     }
 }
 
@@ -201,7 +205,13 @@ if (petitionForm) petitionForm.addEventListener('submit', async function(e) {
         if (!res.ok) throw new Error('Errore invio');
 
         // Salva su Firebase (per mostrare a tutti)
-        await saveToFirebase(name, message);
+        const fbRes = await saveToFirebase(name, message);
+        if (!fbRes || !fbRes.ok) {
+            console.warn('Salvataggio su Firebase fallito o non confermato. Firma salvata localmente.');
+            showToast('Firma salvata localmente ma NON condivisa pubblicamente.');
+        } else {
+            console.log('Firma inviata a Firebase con successo.');
+        }
 
         // Salva in localStorage
         const signatures = loadSignatures();
