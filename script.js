@@ -239,9 +239,17 @@ if (petitionForm) petitionForm.addEventListener('submit', async function(e) {
         if (petitionFormWrapper) petitionFormWrapper.style.display = 'none';
         if (alreadySignedEl) alreadySignedEl.style.display = 'block';
 
-        // Mostra immagine ban fullscreen
+        // Riproduci suono di conferma se disponibile
+        const signSound = document.getElementById('signSound');
+        if (signSound) {
+            signSound.currentTime = 0;
+            signSound.play().catch(() => {});
+        }
+        // Mostra immagine ban fullscreen e messaggio di ringraziamento
         const fullscreenBan = document.getElementById('fullscreenBan');
         if (fullscreenBan) {
+            const textEl = document.getElementById('fullscreenText');
+            if (textEl) textEl.textContent = 'Grazie per aver firmato!';
             fullscreenBan.classList.add('show');
             document.body.style.overflow = 'hidden';
         }

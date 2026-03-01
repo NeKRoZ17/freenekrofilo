@@ -718,6 +718,14 @@ body {
     border-radius: 8px;
 }
 
+.fullscreen-text {
+    margin-top: 24px;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+}
+
 .fullscreen-close {
     position: absolute;
     top: 20px;
