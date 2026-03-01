@@ -39,15 +39,22 @@ async function loadSignaturesFromFirebase() {
     if (!url) return null;
     try {
         const baseUrl = url.replace(/\/$/, '');
-        const res = await fetch(baseUrl + '/signatures.json');
-        if (!res.ok) return null;
+        const fetchUrl = baseUrl + '/signatures.json?cb=' + Date.now();
+        console.log('Fetching signatures from Firebase:', fetchUrl);
+        const res = await fetch(fetchUrl);
+        if (!res.ok) {
+            console.warn('Firebase fetch failed:', res.status, res.statusText);
+            return null;
+        }
         const data = await res.json();
+        console.log('Firebase data received:', data);
         if (!data) return [];
+        // Trasforma l'oggetto in array, ordina per data e restituisci tutte le firme
         return Object.entries(data)
             .map(([id, v]) => ({ ...v, id }))
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
-            .slice(0, 20);
+            .sort((a, b) => new Date(b.date) - new Date(a.date));
     } catch (e) {
+        console.error('Errore caricamento firme da Firebase:', e);
         return null;
     }
 }
@@ -89,9 +96,9 @@ function renderSignaturesList(signatures) {
             month: 'long',
             year: 'numeric'
         }) : '';
-        li.innerHTML = `<span class="sig-name">${escapeHtml(sig.name)}</span> 
-            ${sig.message ? `- "${escapeHtml(sig.message.substring(0, 50))}${sig.message.length > 50 ? '...' : ''}"` : ''}
-            <br><span class="sig-date">${date}</span>`;
+        const displayName = sig.name && sig.name.trim() ? escapeHtml(sig.name) : 'Anonimo';
+        const displayMessage = sig.message && sig.message.trim() ? `- "${escapeHtml(sig.message.substring(0, 50))}${sig.message.length > 50 ? '...' : ''}"` : '';
+        li.innerHTML = `<span class="sig-name">${displayName}</span> ${displayMessage}<br><span class="sig-date">${date}</span>`;
         signaturesList.appendChild(li);
     });
 }
