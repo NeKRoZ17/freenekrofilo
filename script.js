@@ -98,11 +98,22 @@ function renderSignaturesList(signatures) {
 
 function updateUI(signatures) {
     let sigs = signatures;
-    if (!sigs) sigs = loadSignatures();
-    if (!Array.isArray(sigs)) sigs = [];
-    const toShow = sigs.slice(-15).reverse();
-    if (signatureCount) signatureCount.textContent = sigs.length;
-    renderSignaturesList(toShow);
+    
+    // Se Firebase manda un oggetto (come abbiamo visto in console), trasformalo in lista
+    if (sigs && !Array.isArray(sigs)) {
+        sigs = Object.entries(sigs).map(([id, v]) => ({ ...v, id }));
+    }
+    
+    if (!sigs) sigs = [];
+
+    // Ordina per data (dalla più recente)
+    const toShow = sigs.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Aggiorna il numero totale
+    if (signatureCount) signatureCount.textContent = toShow.length;
+
+    // Mostra i commenti (ultime 15 persone)
+    renderSignaturesList(toShow.slice(0, 15));
 }
 
 async function loadAndUpdateUI() {
