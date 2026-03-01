@@ -11,6 +11,7 @@ const GALLERY_PHOTOS = [
     { src: "foto adesione/jimi.jpeg", name: "Jimi" },
     { src: "foto adesione/ledi ghighi.jpeg", name: "Ledi ghighi" },
     { src: "foto adesione/luigi.jpeg", name: "Luigi" },
+    { src: "foto adesione/mario.jpeg", name: "Mario" },
     { src: "foto adesione/mike.jpeg", name: "Mike" },
     { src: "foto adesione/samuel.jpeg", name: "Samuel" },
     { src: "foto adesione/sara.jpeg", name: "Sara" },
@@ -18,3 +19,4 @@ const GALLERY_PHOTOS = [
     { src: "foto adesione/stefano.jpeg", name: "Stefano" },
     { src: "foto adesione/tommaso.jpeg", name: "Tommaso" }
 ];
+
