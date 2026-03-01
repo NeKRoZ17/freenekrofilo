@@ -18,3 +18,4 @@ const GALLERY_PHOTOS = [
     { src: "foto adesione/stefano.jpeg", name: "Stefano" },
     { src: "foto adesione/tommaso.jpeg", name: "Tommaso" }
 ];
+
