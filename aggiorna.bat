@@ -1,8 +1,7 @@
 @echo off
 echo Sto preparando i file...
 git add .
-set /p msg="Cosa hai cambiato? "
-git commit -m "%msg%"
+git commit -m "fix"
 echo.
 echo Invio su GitHub...
 git push origin main
