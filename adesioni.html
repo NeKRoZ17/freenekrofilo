@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi ha aderito - #FreeNekrofilo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <a href="index.html" class="back-link">← Torna al sito</a>
+            <div>
+                <h1 class="logo">#FreeNekrofilo</h1>
+                <p class="tagline">Chi ha aderito sui social</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="gallery-intro">
+            <div class="container">
+                <span class="gallery-badge">#freenekrofilo</span>
+                <h2>Chi ha aderito</h2>
+                <p>Hanno postato, condiviso, supportato. Questi sono i volti di chi ha deciso di non stare zitto. La community cresce ogni giorno.</p>
+                <p class="gallery-count"><span id="photoCount">0</span> persone hanno già aderito</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="container container-wide">
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Le foto vengono caricate da gallery-data.js -->
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-cta">
+            <div class="container">
+                <p>Anche tu vuoi far parte di questo?</p>
+                <a href="index.html" class="btn-secondary">Torna alla petizione</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>#freenekrofilo — Chi aderisce, non si arrende.</p>
+        </div>
+    </footer>
+
+    <script src="gallery-data.js"></script>
+    <script>
+        const grid = document.getElementById('galleryGrid');
+        const countEl = document.getElementById('photoCount');
+
+        GALLERY_PHOTOS.forEach(photo => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `
+                <span class="gallery-hashtag">#freenekrofilo</span>
+                <img src="${photo.src}" alt="${photo.name} - #freenekrofilo" loading="lazy">
+                <span class="gallery-name">${photo.name}</span>
+            `;
+            grid.appendChild(item);
+        });
+
+        countEl.textContent = GALLERY_PHOTOS.length;
+    </script>
+</body>
+</html>

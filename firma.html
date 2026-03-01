@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#FreeNekrofilo - Firma la petizione</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-flex">
+            <nav class="nav-links">
+                <a href="index.html" class="back-link">← Torna indietro</a>
+                <a href="adesioni.html" class="nav-link nav-link-prominent">📸 Vedi chi ha aderito</a>
+            </nav>
+            <h1 class="logo">#FreeNekrofilo</h1>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="petition-section">
+            <div class="container">
+                <div class="signatures-list signatures-list-top">
+                    <h3>Ultime firme</h3>
+                    <ul id="signaturesList"></ul>
+                </div>
+                <div class="signature-counter">
+                    <span class="counter-number" id="signatureCount">0</span>
+                    <span class="counter-label">firme raccolte</span>
+                </div>
+                <div class="petition-form" id="petitionFormWrapper">
+                    <h3>Firma la petizione</h3>
+                    <form id="petitionForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Il tuo nome" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Messaggio opzionale di supporto..." rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn-sign">Firma la petizione</button>
+                    </form>
+                    <p class="form-note">Le tue informazioni non saranno condivise con terze parti.</p>
+                </div>
+                <div id="alreadySigned" class="already-signed-box" style="display: none;">
+                    <div class="already-signed-content">
+                        <span class="already-signed-icon">✓</span>
+                        <h3>Hai già firmato!</h3>
+                        <p>Grazie per il tuo supporto. La tua firma è stata registrata.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="share-section">
+            <div class="container">
+                <h3>Condividi la campagna</h3>
+                <p>Aiutaci a far crescere la petizione condividendo sui social con l'hashtag:</p>
+                <div class="hashtag-box">
+                    <span id="hashtagCopy">#freenekrofilo</span>
+                    <button type="button" class="btn-copy" id="copyBtn" title="Copia hashtag">Copia</button>
+                </div>
+                <div class="share-buttons">
+                    <a href="#" class="share-link twitter">Condividi su X</a>
+                    <a href="#" class="share-link facebook">Condividi su Facebook</a>
+                    <a href="#" class="share-link whatsapp">Condividi su WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Campagna #freenekrofilo - Per la giustizia e il ripristino dell'account @nekrofilo</p>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+
+    <div id="fullscreenBan" class="fullscreen-ban">
+        <button type="button" class="fullscreen-close" id="closeFullscreen" aria-label="Chiudi">×</button>
+        <img src="placeholder.jpg" alt="L'immagine del ban">
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
