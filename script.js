@@ -99,8 +99,8 @@ function renderSignaturesList(signatures) {
             year: 'numeric'
         }) : '';
         const displayName = sig.name && sig.name.trim() ? escapeHtml(sig.name) : 'Anonimo';
-        // mostra fino a 200 caratteri invece di 50, evita taglio se possibile
-        const MAX_MSG = 200;
+        // mostra fino a 100 caratteri per commento
+        const MAX_MSG = 100;
         const displayMessage = sig.message && sig.message.trim()
             ? `- "${escapeHtml(sig.message.substring(0, MAX_MSG))}${sig.message.length > MAX_MSG ? '...' : ''}"`
             : '';
