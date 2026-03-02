@@ -2,6 +2,7 @@
 // Per aggiungere una nuova foto: mettila nella cartella "foto adesione" e esegui: node update-gallery.js
 // Formato: { src: "foto adesione/nomefile.jpg", name: "Nome" }
 const GALLERY_PHOTOS = [
+    { src: "foto adesione/andrea.jpeg", name: "Andrea" },
     { src: "foto adesione/ciruzzo.jpeg", name: "Ciruzzo" },
     { src: "foto adesione/costantino.jpeg", name: "Costantino" },
     { src: "foto adesione/damiano.jpeg", name: "Damiano" },
